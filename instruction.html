@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/stylesheet_instruction.css" rel="stylesheet" />
+    <title>REGLE DU JEU</title>
+</head>
+<body>
+    <h1>LES REGLES DU JEU</h1>
+
+    <p>
+        Pour jouer, utiliser les touches suivantes :
+        
+            <li>"Z" pour aller vers le haut</li>
+            <li>"S" pour aller vers le bas</li>
+            <li>"Q" pour aller vers la gauche</li>
+            <li>"D" pour aller vers la droite</li>
+    </p>
+    <p>
+        Chaque niveau est représenté par une grille de 32 x 16 cases. Chaque case peut contenir :
+    </p>
+    <p>
+        <ul>
+            <li>de la terre</li>
+            <li>un rocher</li>
+            <li>un diamant</li>
+            <li>un mur</li>
+            <li>rien</li>
+            <li>Rockford</li>
+         </ul>
+    </p>
+        <p>
+            Rockford se déplace d’une case à la fois, horizontalement ou verticalement :
+        </p>
+         
+    <p>
+        <img src="textures/image1.png">
+    </p>   
+    
+    <p>
+        Rockford peut se déplacer sur les cases vides :
+    </p>
+    <p>
+        <img src="textures/image2.png">
+    </p>
+    <p>
+        Rockford peut également creuser les cases de terre qui deviennent vides après son passage :
+    </p>
+    <p>
+        <img src="textures/image3.png">
+    </p>
+    <p>
+        Rockford peut également pousser les rochers horizontalement mais pas verticalement :
+    </p>
+    <p>
+        <img src="textures/image4.png">
+    </p>
+    <p>
+        Rockford ne peut pousser un rocher que s’il n’y a rien derrière ce dernier :
+    </p>
+    <p>
+        <img src="textures/image5.png">
+    </p>
+    <p>
+        Lorsqu’un rocher est dans le vide (si les case en dessous sont vides), le rocher tombe jusqu’à la
+prochaine case contenant de la terre, un rocher ou un diamant :
+
+    </p>
+    <p>
+        <img src="textures/image6.png">
+    </p>
+    <p>
+        Si Rockford se trouve plus d’une case en dessous d’un rocher, il sera écrasé par ce dernier :
+    </p>
+    <p>
+        <img src="textures/image7.png">
+    </p>
+    <p>
+        Si le joueur est écrasé, le niveau reprend du début.
+    </p>
+    <p>
+        Enfin, si Rockford passe sur un diamant, il collecte ce dernier et la case devient vide après son passage :
+    </p>
+    <p>
+        <img src="textures/image8.png">
+    </p>
+    <p>
+        Lorsque tous les diamants du niveau ont été ramassés, le joueur passe au niveau suivant. 
+    </p>
+</body>
+</html>
