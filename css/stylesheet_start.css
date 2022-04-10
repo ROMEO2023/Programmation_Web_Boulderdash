@@ -21,16 +21,39 @@
 
 #Nouvelle {
     float: left;
+    width:150px;
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    font-family: fantasy;
+    font-size: 20px;
+    margin-left: 15px;
+}
+#Nouvelle2 {
+    float: left;
     width:200px;
     border: 2px solid white;
     background-color: white;
     color: black;
     font-family: fantasy;
     font-size: 20px;
-    margin-left: 20px;
+    margin-left: 15px;
+}
+#levels{
+    float: left;
+    width:100px;
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    font-family: fantasy;
+    font-size: 20px;
+    margin-left: 15px;
 }
 
 #Nouvelle:hover {
+    color: green;
+}
+#Nouvelle2:hover {
     color: green;
 }
 
