@@ -87,6 +87,7 @@ function startgame() {
     document.getElementById('time').innerHTML = Infinity
 }
 
+//Creation du niveau
 function makeLevel() {
     restart = true
     width = document.getElementById('width_board').value
@@ -132,6 +133,8 @@ function makeLevel() {
 
         return array;
     }
+
+    //Gestion d'afffichage du score du diament
     var scoreDisplay = random.length - 1
     var interval_scoreboard = setInterval(function () {
         if (scoreDisplay >= 0) {
@@ -143,6 +146,8 @@ function makeLevel() {
             document.getElementById("scoreboard").style.display = 'none'
         } else {
             //var poz = document.querySelector('.player').id.split('_')
+
+    
             player_can_walk = true
             document.getElementById("scoreboard2").style.display = 'none'
             document.getElementById("scoreboard").style.display = 'flex'
@@ -166,36 +171,29 @@ function zeroes(n, width, z) {
 function random(x) {
     return x[Math.floor(x.length * Math.random())]
 }
-function active_mag_el(magic_cobble){
-    is_active = true
-    for (var i = 0; i < magic_cobble.length; i++) {
-        magic_cobble[i].style.backgroundImage = 'url(textures/magic_stone.gif)'
-    }
-}
-function deactive_mag_el(magic_cobble){
-    is_active = false
-    //var all = magic_cobble.querySelectorAll('.af_magic_cobble') 
-    for (var i = 0; i < magic_cobble.length; i++) {
-        magic_cobble[i].className = 'cobble'
-        magic_cobble[i].style.background = ''
-    }
-}
+
+// Gestion des objets
 
 function collision(bri) {
     switch (bri.className) {
+        //Gestion de la terre
         case "T": {
             var dirt_sfx = new Audio("audio/dirt.ogg"); // tampons automatiquement lors de leur création
             dirt_sfx.play();
             dirt_sfx.volume = 0.04
             return true;
         }
-           
+         
+        //Gestion du vide 
+
         case "V": {
             var clear_sfx = new Audio("audio/clear.ogg"); // tampons automatiquement lors de leur création
             clear_sfx.play();
             clear_sfx.volume = 0.04
             return true;
         }
+
+        //Gestion des rochers
            
         case "R": {
             var pos_stone = bri.id.split('_')
@@ -220,6 +218,7 @@ function collision(bri) {
             return false;
         }
 
+        //Gestion des diaments
            
         case "D": {
             var snd = new Audio("audio/coin.ogg"); // tampons automatiquement lors de leur création
@@ -429,6 +428,9 @@ function releaseKey(event) {
     }
 }
 
+/*Gestion des mouvement des objets
+- new_x gère le mouvement des objets sur l'abscisse (vers la gauche et droite)
+- new_y gère le mouvement des objets sur l'ordonnée (vers le haut et le bas)*/
 function move() {
     var new_x, new_y;
     var can_walk = false;
@@ -439,7 +441,9 @@ function move() {
         return
     }
     /*touches de deplacement
-    90 - z-> haut , 83 -s->bas, 81 -q->gauche, 68 - d->droit */
+    90 - z-> haut , 83 -s->bas, 81 -q->gauche, 68 - d->droit 
+    - pos_player_x gère le mouvement du personnage vers les abscisses (gauche et droite)
+    - pos_player_x gère le mouvement du personnage vers les ordeonnées (haut et bas)*/
     switch (key) {
         case 90:
             document.querySelector('.P').style.backgroundImage = ''
@@ -529,6 +533,7 @@ function move() {
 
 }
 
+//Gestion de la map
 function map_edit(event) {
     if (event.target !== event.currentTarget && can_edit && document.getElementById("admin_tools").checked) { 
         var game_objects = document.getElementById('game_objects').value
@@ -538,6 +543,7 @@ function map_edit(event) {
 
 setInterval(falling, 150)
 
+//Gestion de la chute des objets (Rocher et Diaments)
 function falling() {
     if (restart) {
         return
@@ -652,10 +658,10 @@ function falling() {
             stone.fall = true
             stone.className = 'V'
         }
-        //la mort du joueur lors de la chute de la pierre, et non lorsqu'il se trouve en bas de celle-ci
+        //Gestion de la mort du joueur lors de la chute de la pierre, et non lorsqu'il se trouve en bas de celle-ci
 
         if (bottom.className != 'V' && stone.fall == true && stone.className != 'D') {
-            var stone_sfx = new Audio("audio/stone.ogg"); // buffers automatically when created
+            var stone_sfx = new Audio("audio/stone.ogg"); 
 
             stone_sfx.play();
             stone_sfx.volume = 0.03
@@ -681,6 +687,7 @@ function falling() {
     };
 }
 
+//Gestion du mouvement du papillon 
 function Position(y, x) {
     this[0] = Number(y)
     this[1] = Number(x)
@@ -754,6 +761,8 @@ var dir_to_pos = [
     new Position(1, 0)
 ]
 
+//Gestion de la fin du jeu avec tout les conditions possibles (la pierre tombe sur le joueur, le temps ecoulé...)
+
 function gameover() {
 
     if (_map_level_ % 5 == 0) {
@@ -761,7 +770,7 @@ function gameover() {
     } else {
         document.getElementById('life').innerHTML = player_life - 1
         player_life--
-        //alert('umar, zostało ci ' + player_life + ' żyć!')
+       
 
         if (player_life == 0) {
           
@@ -785,6 +794,7 @@ function gameover() {
     }
 }
 
+//Gestion de l'explosion des pierres pour creer les diaments
 function coin_explosion(pos_player, typ) {
     var wokol_player = [
         document.getElementById(Number(pos_player[0]) + '_' + pos_player[1]) || {},
@@ -808,6 +818,8 @@ function coin_explosion(pos_player, typ) {
 
 
     }
+
+    //Definition du delai d'attente
     setTimeout(function () {
         for (var i = 0; i < wokol_player.length; i++) {
 
@@ -822,6 +834,7 @@ function coin_explosion(pos_player, typ) {
     }, 600)
 }
 
+// Enregistrememnt de la map
 function map_save() {
     var map = []
     for (var i = 0; i < width; i++) {
@@ -833,6 +846,7 @@ function map_save() {
     return JSON.stringify(map)
 }
 
+//Gestion d'affichage des maps
 function map_load(s) {
     var required_coins = document.getElementById('required_coins')
 
@@ -956,6 +970,8 @@ function map_load(s) {
     }
 }
 
+
+// Gestion des outils d'administration
 function admin_tool() {
     if (document.getElementById("admin_tools").checked == true) {
         document.getElementById("save").style.display = 'inline'
@@ -975,6 +991,7 @@ function admin_tool() {
     }
 }
 
+//Gestion d'intervalle
 setInterval(czas_gry, 1000)
 
 function czas_gry() {
@@ -990,66 +1007,7 @@ function czas_gry() {
 }
 setInterval(bio_mass, 5000)
 
-//Fonction du jeu
-function bio_mass() {
-    var for_stone = 15
-    var for_coins = 0
-    var bio_mass = document.querySelectorAll(".bio_mass")
-    var can_expand = false
-    for (var i = bio_mass.length - 1; i >= 0; i--) {
-        var bio = bio_mass[i].id.split('_');
 
-        var bio_right = document.getElementById(bio[0] + '_' + (Number(bio[1]) + 1)) || {}
-        var bio_left = document.getElementById(bio[0] + '_' + (Number(bio[1]) - 1)) || {}
-        var bio_bottom = document.getElementById((Number(bio[0]) + 1) + '_' + bio[1]) || {}
-        var bio_top = document.getElementById((Number(bio[0]) - 1) + '_' + bio[1]) || {}
-
-        if ((bio_right.className == 'T' || bio_right.className == 'V') || (bio_left.className == 'T' || bio_left.className == 'V') || (bio_bottom.className == 'dirt' || bio_bottom.className == 'V') || (bio_top.className == 'dirt' || bio_top.className == 'V')) {
-            can_expand = true
-        } else continue
-
-        var _rand_bio_ = Math.floor((Math.random() * 4) + 1);
-        switch (_rand_bio_) {
-            case 1:
-                if ((bio_right.className == 'T' || bio_right.className == 'V')) {
-                    bio_right.className = 'bio_mass'
-                }
-
-                break
-            case 2:
-                if ((bio_left.className == 'T' || bio_left.className == 'V')) {
-                    bio_left.className = 'bio_mass'
-                }
-
-                break
-            case 3:
-                if ((bio_bottom.className == 'T' || bio_bottom.className == 'V')) {
-                    bio_bottom.className = 'bio_mass'
-                }
-
-                break
-            case 4:
-                if ((bio_top.className == 'T' || bio_top.className == 'V')) {
-                    bio_top.className = 'bio_mass'
-
-                }
-
-                break
-            default:
-
-        }
-
-    }
-    if (!can_expand && bio_mass.length > for_stone) {
-        for (var i = bio_mass.length - 1; i >= 0; i--) {
-            bio_mass[i].className = 'R'
-        }
-    } else if (!can_expand && bio_mass.length > for_coins) {
-        for (var i = bio_mass.length - 1; i >= 0; i--) {
-            bio_mass[i].className = 'D'
-        }
-    }
-}
 
 function lifeup() {
     var score = Number(document.getElementById("overall_score").innerHTML)
