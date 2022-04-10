@@ -250,7 +250,7 @@ function collision(bri) {
                         document.getElementById('16_38').className = 'teleport'
                         break
                     case 2:
-                        if (coin_score.innerHTML == '10') {
+                        if (coin_score.innerHTML == '15') {
                             pkt_coin.innerHTML = '15'
 
                         }
@@ -296,7 +296,7 @@ function collision(bri) {
 
                         break
                     case 9:
-                        if (coin_score.innerHTML == '10') {
+                        if (coin_score.innerHTML == '15') {
                             pkt_coin.innerHTML = '20'
                         }
                         document.getElementById('3_0').className = 'teleport'
@@ -309,7 +309,7 @@ function collision(bri) {
                         break
                     case 11:
                         if (coin_score.innerHTML == '75') {
-                            pkt_coin.innerHTML = '10'
+                            pkt_coin.innerHTML = '15'
                         }
                         break
                     case 12:
@@ -345,7 +345,7 @@ function collision(bri) {
                     case 17:
                         if (coin_score.innerHTML == '30') {
 
-                            pkt_coin.innerHTML = '10'
+                            pkt_coin.innerHTML = '15'
                         }
                         document.getElementById('18_38').className = 'teleport'
                         break
@@ -856,12 +856,12 @@ function map_load(s) {
     }
     switch (_map_level_) {
         case 1:
-            pkt_coin.innerHTML = '10'
+            pkt_coin.innerHTML = '15'
             required_coins.innerHTML = '12'
             break
         case 2:
             pkt_coin.innerHTML = '20'
-            required_coins.innerHTML = '10'
+            required_coins.innerHTML = '15'
             break
         case 3:
             pkt_coin.innerHTML = '15'
@@ -885,14 +885,14 @@ function map_load(s) {
             break
         case 8:
             pkt_coin.innerHTML = '15'
-            required_coins.innerHTML = '10'
+            required_coins.innerHTML = '15'
             break
         case 9:
-            pkt_coin.innerHTML = '10'
-            required_coins.innerHTML = '10'
+            pkt_coin.innerHTML = '15'
+            required_coins.innerHTML = '15'
             break
         case 10: //bonus 2
-            pkt_coin.innerHTML = '10'
+            pkt_coin.innerHTML = '15'
             required_coins.innerHTML = '16'
             break
         case 11:
@@ -912,7 +912,7 @@ function map_load(s) {
             required_coins.innerHTML = '20'
             break
         case 15: // bonus 3
-            pkt_coin.innerHTML = '10'
+            pkt_coin.innerHTML = '15'
             required_coins.innerHTML = '14'
             break
         case 16:
@@ -920,16 +920,16 @@ function map_load(s) {
             required_coins.innerHTML = '50'
             break
         case 17:
-            pkt_coin.innerHTML = '10'
+            pkt_coin.innerHTML = '15'
             required_coins.innerHTML = '30'
             break
         case 18:
             pkt_coin.innerHTML = '15'
-            required_coins.innerHTML = '10'
+            required_coins.innerHTML = '15'
             break
         case 19:
             pkt_coin.innerHTML = '12'
-            required_coins.innerHTML = '10'
+            required_coins.innerHTML = '15'
             break
         case 20: // bonus 4
             pkt_coin.innerHTML = '6'
